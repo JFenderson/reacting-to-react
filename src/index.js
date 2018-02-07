@@ -5,7 +5,7 @@ import App from './components/App';
 
 class Index extends Component {
     render() {
-      return <App name=" joseph" />
+      return <App name=" joseph" /> 
     }
 }
 

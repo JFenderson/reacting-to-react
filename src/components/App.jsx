@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 //import ReactDOM from 'react-dom';
 
 // const App = (props) => {
@@ -8,24 +8,46 @@ import React, { Component } from 'react';
 class App extends React.Component{
     constructor(props,text){
         super(props,text);
-        this.state = {
-            name: ''
-        };
+        this.state = { name: 'hih'};
     };
 
     handleChange(name) {
         this.setState({ name });
     }
+
+    toggleHasLoaded = () => {
+        this.setState({
+            hasLoaded: !this.state.hasLoaded
+        });
+    }
+
+    componentDidMount(){
+        this.setState({
+            hasLoaded: true
+        })
+    }
     render(){
-        const person = this.state.name;
+        // const person = this.state.name;
+        // const text = "";
+        if(this.state.hasLoaded){
         return(
-            <div>
-            <h1>hello, {this.props.name}</h1>
-                <input 
-                value={this.state.name} 
-                onChange={(e) => { this.handleChange(e.target.value) }} />
-            </div>
+            <Fragment>
+                    <h1>hello, {this.props.name}</h1>
+                        <input placeholder="What's your name?"
+                        value={this.state.name} 
+                        onChange={(e) => { this.handleChange(e.target.value) }} />
+                    <h1> {this.state.name} </h1>
+                    
+            </Fragment>
         )
+        }else{
+        return(
+            <Fragment>
+                <h1>Loading...</h1>
+                <button onClick={this.toggleHasLoaded}>click me</button>
+            </Fragment>
+            )
+        }
     }
 }
 
